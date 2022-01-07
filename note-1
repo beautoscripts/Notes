@@ -15,6 +15,8 @@ AWS insfrastructure i.e data centers are available accross the globe. Every loca
 
 Within the Region we have multiple physical locations with redundant power, networking. These locations gives high availablity and fault tolerance. These locations are term as Availability Zones (AZs).
 
+Edge Location
+-------------
 
 CIDR ( Classless Inter-Domain Routing )
 ---------------------------------------
