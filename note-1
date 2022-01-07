@@ -1,0 +1,64 @@
+AWS VPC ( Virtual Private Cloud )
+=================================
+
+Virtual Private Cloud
+---------------------
+
+VPC is a logically isolated virtual private network. Each aws account holder have it's own dedicated vpc environment. In this VPC environment we can use other aws resources, scale up and scale down resources as per our needs.
+
+When we create aws account, a default VPC is created. In one aws account we can have 5 vpc.One vpc can have 200 subnents and 200 route table.
+
+Region / Availability Zones
+---------------------------
+
+AWS insfrastructure i.e data centers are available accross the globe. Every location is term as 'Region' in AWS.
+
+Within the Region we have multiple physical locations with redundant power, networking. These locations gives high availablity and fault tolerance. These locations are term as Availability Zones (AZs).
+
+
+CIDR ( Classless Inter-Domain Routing )
+---------------------------------------
+
+While creating vpc we need to give the ip address range from private ip address range in the CIDR (Classless Inter-Domain Routing) form, example 10.0.0.0/16.
+
+IPv4 Range
+==========
+10.0.0.0    - 10.255.255.255
+172.16.0.0  - 172.31.255.255
+192.168.0.0 - 192.168.255.255
+
+Subnets
+-------
+
+A subnet is the range of ip address within the VPC. When we create subnet we need to give the valid ip address range which should be the subset of vpc ip address range. Once the subnet is created we can launch AWS resources such as EC2.
+
+Each subnet must reside within one AZ and it cannot be spanned across AZs.
+
+Subnet Types
+
+- Private subnets traffics are not routed to an Internet Gateway so that it can not reach to the public internet.
+
+- Public subnets traffics are routed to an Internet Gateway so that it can be reached to the public internet.
+
+- VPN only Subnets are not routed to Internet Gateway but are routed to virtual private gateway for Site-to-Site VPN connection.
+
+Route tables
+------------
+
+A route table contains a set of rules, that determines how the network traffic will flow from VPC, these rules are called routes.
+
+A Subnet can be associated with a particular route table or else it is associated with the main route table.
+
+A route table consist of ip address range (destination) where you want the traffic to go and gateway or network interfaces through which this traffic will go (targets).
+
+Internet Gateway
+----------------
+
+An internet gateway allows the subnet network traffic to have access to the public internet.
+
+A default VPC is already attached to the internet gateway and all the default subnets route table have the internet gateway destination.
+
+Each instances in the default subnet have private and public ip address
+
+
+
