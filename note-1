@@ -18,6 +18,8 @@ Within the Region we have multiple physical locations with redundant power, netw
 Edge Location
 -------------
 
+AWS data centers are desinged to give deliver services with the low latency. Amazon have dozens of data centers spread across the glob which are closer to users than Region and availablity zones, often in major cities
+
 CIDR ( Classless Inter-Domain Routing )
 ---------------------------------------
 
@@ -53,6 +55,12 @@ A Subnet can be associated with a particular route table or else it is associate
 
 A route table consist of ip address range (destination) where you want the traffic to go and gateway or network interfaces through which this traffic will go (targets).
 
+Propagation, allows virtual private gateway to automatically route to the route table i.e we don't need to manually enter the VPN routes to route table
+
+Edge association
+----------------
+For routing inbound VPC traffic to an appliance, we need to associate a route table with internet gateway or virtual private gateway and specify network interface as target.
+
 Internet Gateway
 ----------------
 
@@ -61,6 +69,34 @@ An internet gateway allows the subnet network traffic to have access to the publ
 A default VPC is already attached to the internet gateway and all the default subnets route table have the internet gateway destination.
 
 Each instances in the default subnet have private and public ip address
+
+Egress only internet gateway
+----------------------------
+
+EIGW allow outbound communication via IPv6 from instances and prevent internet from initiating IPv6 connection.
+
+EIGW works only with IPv6 network.
+
+
+NAT Gateway
+-----------
+
+A NAT gateway is a Network Address Translation service. This service allows instances in the private subnet to have access to the services outside of the VPC but external services cannot have access to those instances
+
+VPC Endpoints
+-------------
+
+VPC Endpoints enables communication between VPC and supported aws services without the need of internet i.e without using NAT gateway or public ip address.
+
+Types of VPC endpoints
+
+- Gateway endpoint, is a route in the route table in which target is the 'Gateway EndPoint' and destination is the AWS Service.
+
+As if now below two AWS Services are supported:
+- AWS S3 ** this is also available for Interface Endpoint
+- AWS Dynamodb
+
+Gateway Endpoint is attached to Private Subnet, so that Private subnet can reach to the AWS services without having the Internet Access.
 
 
 
